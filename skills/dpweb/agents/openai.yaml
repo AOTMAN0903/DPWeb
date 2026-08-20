@@ -1,0 +1,4 @@
+interface:
+  display_name: "DPWeb"
+  short_description: "Build DPWeb-style digital twin dashboards"
+  default_prompt: "Use $dpweb to build a new digital twin dashboard page following the DPWeb project conventions."
