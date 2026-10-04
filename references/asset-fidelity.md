@@ -30,7 +30,9 @@ Every visible static or finite-state icon, title mark, decorative chrome, status
 
 Prefer direct Figma exports or exact repo assets over screenshots whenever a layer, component, frame, image fill, vector, or asset node is available. Screenshots are acceptable only when the source cannot expose the asset separately, no original image exists, or the user only provided a screenshot.
 
-For static composed visuals, prefer exporting the whole visual group as one SVG asset when child layers depend on Figma transforms, clipping, filters, masks, shadows, rotations, or `preserveAspectRatio` behavior. Split a composed visual only when part of it is data-driven, changes at runtime, has independent finite states, or is independently animated/interacted with.
+For static composed visuals, prefer exporting the smallest complete visual group as one SVG asset when child layers depend on Figma transforms, clipping, filters, masks, shadows, rotations, or `preserveAspectRatio` behavior. Do not re-author or flatten those relationships in CSS or hand-written SVG. Inspect that the exported SVG preserves its `viewBox`, crop, transparency, masks, clip paths, filters, layer order, and `preserveAspectRatio` behavior. Split a composed visual only when part of it is data-driven, changes at runtime, has independent finite states, or is independently animated/interacted with.
+
+When a composed visual mixes static chrome with dynamic text/data, use a hybrid: export the static shell/group intact, render the dynamic content at runtime, and record the exact dynamic slot bounds, alignment, font treatment, and state behavior. Do not split decorative children merely to make them easier to approximate.
 
 Prefer SVG for vectors, components, instances, icons, decorative chrome, finite-state control backgrounds, status markers, title marks, and other non-photo visuals. Use PNG only for inherently raster imagery such as photos, screenshots, bitmap textures, or image fills that cannot be meaningfully exported as vectors. If downloaded bytes are SVG, save and reference them as `.svg` even if the URL or filename suggests `.png`.
 
